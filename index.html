@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Love Notes Envelope</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f8f8f8;
+            font-family: Arial, sans-serif;
+            position: relative;
+        }
+
+        .envelope {
+            width: 200px;
+            height: 120px;
+            background-color: #f5f5dc; /* Beige color */
+            border: 2px solid #d2b48c; /* Darker beige for border */
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .envelope.open {
+            transform: scale(1.1);
+        }
+
+        .ribbon {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 20px;
+            background: url('https://i.imgur.com/8Z5g5gD.png') repeat-x; /* Heart ribbon */
+            z-index: 1;
+        }
+
+        .scissors {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 30px;
+            height: 30px;
+            background: url('https://i.imgur.com/8Z5g5gD.png') no-repeat center;
+            background-size: contain;
+            cursor: pointer;
+            z-index: 2;
+        }
+
+        .page {
+            display: none;
+            width: 180px;
+            height: 100px;
+            background-color: white;
+            border: 1px solid #d2b48c;
+            border-radius: 5px;
+            padding: 10px;
+            position: absolute;
+            top: 30px;
+            left: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .text {
+            font-size: 16px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="envelope" id="envelope">
+        <div class="ribbon"></div>
+        <div class="scissors" id="scissors"></div>
+        <div class="page" id="page1">
+            <div class="text">Aish, I love you so much!<br>I am in love with you.<br>You're the prettiest person I know.<br>Be my Valentine!</div>
+        </div>
+        <div class="page" id="page2">
+            <div class="text">I am gonna marry you and have babies with you!</div>
+        </div>
+    </div>
+
+    <script>
+        const envelope = document.getElementById('envelope');
+        const scissors = document.getElementById('scissors');
+        const page1 = document.getElementById('page1');
+        const page2 = document.getElementById('page2');
+        let pageOpened = false;
+
+        // Function to cut the ribbon and open the envelope
+        scissors.addEventListener('click', () => {
+            envelope.classList.add('open');
+            setTimeout(() => {
+                envelope.style.cursor = 'pointer'; // Change cursor to pointer after cutting
+            }, 300);
+        });
+
+        // Function to open the first page
+        envelope.addEventListener('click', () => {
+            if (!pageOpened) {
+                page1.style.display = 'block';
+                pageOpened = true;
+            } else {
+                page2.style.display = 'block';
+            }
+        });
+    </script>
+
+</body>
+</html>
